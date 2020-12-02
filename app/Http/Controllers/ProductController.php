@@ -71,7 +71,8 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('product.edit', compact('product'));
+        $category=Category::all();
+        return view('product.edit', compact('product','category'));
     }
 
     /**
@@ -86,7 +87,7 @@ class ProductController extends Controller
         $this->validate($request,[
             'name' => 'required|string|max:50',
             'price' => 'required|string',
-            'category_id' => 'required|string',
+            'category_id' => 'required',
             'description' => 'required',
         ]);
         $product->update($request->except('_token'));

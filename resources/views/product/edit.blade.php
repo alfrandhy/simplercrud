@@ -25,7 +25,12 @@
                 </div>
                 <div class="form-group">
                     <label for="category">Product Category</label>
-                    <input value="{{ $product->category }}" type="text" id="category" name="category" class="form-control @error('category') is-invalid @enderror">
+                    <select name="category_id" id="category" class="form-control @error('category_id') is-invalid @enderror">
+                        <option value="">Select Data</option>
+                        @foreach ($category as $item)
+                            <option value="{{ $item->id }}" {{ $item->id == $product->category_id ? 'selected':'' }}>{{ $item->name }}</option>
+                        @endforeach
+                    </select>
                     @error('category')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
